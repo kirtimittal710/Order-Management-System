@@ -6,7 +6,7 @@ import OrderList from './pages/OrderList';
 import OrderDetail from './pages/OrderDetail';
 import CreateOrder from './pages/CreateOrder';
 import Notifications from './pages/Notifications';
-import { notifications } from './data/mockData';
+import { orders as initialOrders, notifications } from './data/mockData';
 import './index.css';
 
 const pageTitles = {
@@ -21,6 +21,11 @@ export default function App() {
   const [page, setPage] = useState('dashboard');
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [orders, setOrders] = useState(() => {
+  const saved = localStorage.getItem('orders');
+  return saved ? JSON.parse(saved) : initialOrders;
+});
+
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
@@ -39,20 +44,27 @@ export default function App() {
     setSelectedOrderId(null);
   };
 
+ const addOrder = (newOrder) => {
+  const updated = [newOrder, ...orders];
+  setOrders(updated);
+  localStorage.setItem('orders', JSON.stringify(updated));
+  navigate('orders');
+};
+
   const renderPage = () => {
     switch (page) {
       case 'dashboard':
-        return <Dashboard onNavigate={navigate} onSelectOrder={selectOrder} />;
+        return <Dashboard onNavigate={navigate} onSelectOrder={selectOrder} orders={orders} />;
       case 'orders':
-        return <OrderList onSelectOrder={selectOrder} onNavigate={navigate} />;
+        return <OrderList orders={orders} onSelectOrder={selectOrder} onNavigate={navigate} />;
       case 'detail':
-        return <OrderDetail orderId={selectedOrderId} onBack={goBack} />;
+        return <OrderDetail orderId={selectedOrderId} onBack={goBack} orders={orders} />;
       case 'create':
-        return <CreateOrder onBack={() => navigate('orders')} />;
+        return <CreateOrder onBack={() => navigate('orders')} onAddOrder={addOrder} />;
       case 'notifications':
         return <Notifications onSelectOrder={selectOrder} />;
       default:
-        return <Dashboard onNavigate={navigate} onSelectOrder={selectOrder} />;
+        return <Dashboard onNavigate={navigate} onSelectOrder={selectOrder} orders={orders} />;
     }
   };
 

@@ -24,6 +24,17 @@
   --gradient-danger: linear-gradient(135deg, #ff4f7b 0%, #ff7043 100%);
   --gradient-warning: linear-gradient(135deg, #ffb300 0%, #ff7043 100%);
 }
+[data-theme="light"] {
+  --bg-primary: #f4f4f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-hover: #f0f0f7;
+  --border: #e0e0ee;
+  --border-active: #c8c8e0;
+  --text-primary: #0a0a1a;
+  --text-secondary: #555577;
+  --text-muted: #9999bb;
+}
 
 * { box-sizing: border-box; }
 
@@ -240,3 +251,4 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 0 !important;
   }
 }
+

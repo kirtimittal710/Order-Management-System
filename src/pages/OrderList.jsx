@@ -15,7 +15,6 @@ const PriorityDot = ({ priority }) => {
     </span>
   );
 };
-
 const EmptyState = () => (
   <div className="flex flex-col items-center justify-center py-20 text-center">
     <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4"
@@ -31,7 +30,7 @@ export default function OrderList({ orders, onSelectOrder, onNavigate }) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [priorityFilter, setPriorityFilter] = useState('all');
-  const [viewMode, setViewMode] = useState('table'); // 'table' | 'grid'
+  const [viewMode, setViewMode] = useState('table');
   const [showFilters, setShowFilters] = useState(false);
   const [hoveredRow, setHoveredRow] = useState(null);
 
