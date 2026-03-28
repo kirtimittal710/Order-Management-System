@@ -31,8 +31,10 @@ export default function CreateOrder({ onBack, onAddOrder }) {
   });
   const [errors, setErrors] = useState({});
 
-  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
-
+const set = (k, v) => {
+  setForm(f => ({ ...f, [k]: v }));
+  setErrors(e => ({ ...e, [k]: undefined }));
+};
   const validateStep1 = () => {
     const e = {};
     if (!form.customerName.trim()) e.customerName = 'Customer name is required';
