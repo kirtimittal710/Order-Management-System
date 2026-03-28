@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, User, Phone, Mail, Package, Calendar, Clock, CheckCircle, AlertCircle, Edit2 } from 'lucide-react';
+import { ArrowLeft, Phone, Mail, Package, Calendar, Clock, CheckCircle, AlertCircle, Edit2 } from 'lucide-react';
 
 const StatusBadge = ({ status }) => {
   const labels = { pending: 'Pending', in_progress: 'In Progress', completed: 'Completed', cancelled: 'Cancelled' };
